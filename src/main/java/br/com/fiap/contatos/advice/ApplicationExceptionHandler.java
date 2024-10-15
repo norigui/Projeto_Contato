@@ -16,6 +16,7 @@ public class ApplicationExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    // #A PRIMEIRA STRING REPRESENTA O NOME DO OBJETO QUE ESTÁ COM ERRO, E O SEGUNDO REPRESENTA A MENSAGEM DE ERRO.
     public Map<String, String> manusearArgumentosInvalidos(MethodArgumentNotValidException erro) {
 
         Map<String, String> mapaDeErro = new HashMap<>();
@@ -30,5 +31,4 @@ public class ApplicationExceptionHandler {
         }
         return mapaDeErro;
     }
-
 }

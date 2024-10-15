@@ -48,7 +48,7 @@ public class ContatoController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/contatos/nome/{nome}")
     public ContatoExibirDto buscarPorNome(@PathVariable String nome) {
-        return contatoService.buscarPorNome(nome);
+        return contatoService.buscarContatoPeloNome(nome);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

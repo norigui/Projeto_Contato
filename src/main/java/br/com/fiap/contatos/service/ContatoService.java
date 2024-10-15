@@ -78,8 +78,8 @@ public class ContatoService {
 
     }
 
-    public ContatoExibirDto buscarPorNome(String nome) {
-        Optional<Contato> contatoOptional = contatoRepository.findByNome(nome);
+    public ContatoExibirDto buscarContatoPeloNome(String nome) {
+        Optional<Contato> contatoOptional = contatoRepository.buscarContatopeloNome(nome);
 
         if (contatoOptional.isPresent()) {
             return new ContatoExibirDto(contatoOptional.get());
@@ -88,5 +88,16 @@ public class ContatoService {
         }
 
     }
+
+//    public ContatoExibirDto buscarPorNome(String nome) {
+//        Optional<Contato> contatoOptional = contatoRepository.findByNome(nome);
+//
+//        if (contatoOptional.isPresent()) {
+//            return new ContatoExibirDto(contatoOptional.get());
+//        } else {
+//            throw new UsuarioNaoEncontradoException("Contato não encontrado");
+//        }
+//
+//    }
 
 }
