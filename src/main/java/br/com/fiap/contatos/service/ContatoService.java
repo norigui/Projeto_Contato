@@ -2,6 +2,7 @@ package br.com.fiap.contatos.service;
 
 import br.com.fiap.contatos.dto.ContaCadastroDto;
 import br.com.fiap.contatos.dto.ContatoExibirDto;
+import br.com.fiap.contatos.exception.UsuarioNaoEncontradoException;
 import br.com.fiap.contatos.model.Contato;
 import br.com.fiap.contatos.repository.ContatoRepository;
 import br.com.fiap.contatos.util.modelmapper.ObjectModelMapper;
@@ -23,6 +24,7 @@ public class ContatoService {
 
     public ContatoExibirDto gravar(ContaCadastroDto contaCadastroDto) {
         Contato contato = new Contato();
+        // # COPIA O OBJETO PARA O OBJETO DTO
         BeanUtils.copyProperties(contaCadastroDto, contato);
         return new ContatoExibirDto(contatoRepository.save(contato));
     }
@@ -33,11 +35,12 @@ public class ContatoService {
         if (contatoOptional.isPresent()) {
             return new ContatoExibirDto(contatoOptional.get());
         } else {
-            throw new RuntimeException("Contato não encontrado");
+            throw new UsuarioNaoEncontradoException("Contato não encontrado");
         }
     }
 
     public List<ContatoExibirDto> listarTodosOsContato() {
+        // # CONVERTE UMA LISTA PARA UMA LISTA DTO
         List<ContatoExibirDto> contatoExibirDtos = new ArrayList<>();
         List<Contato> contato = contatoRepository.findAll();
 
@@ -50,12 +53,13 @@ public class ContatoService {
         if (contatoOptional.isPresent()) {
             contatoRepository.delete(contatoOptional.get());
         } else {
-            throw new RuntimeException("Contado não encontrado");
+            throw new UsuarioNaoEncontradoException("Contado não encontrado");
         }
 
     }
 
     public List<ContatoExibirDto> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
+        // # CONVERTE UMA LISTA PARA UMA LISTA DTO
         List<ContatoExibirDto> contatoExibirDto = new ArrayList<>();
         List<Contato> contato = contatoRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
         return contatoExibirDto = contato.stream().map(ContatoExibirDto::new).toList();
@@ -69,7 +73,7 @@ public class ContatoService {
         if (contatoOptional.isPresent()) {
             return new ContatoExibirDto(contatoRepository.save(contato));
         } else {
-            throw new RuntimeException("Contato não encontrado");
+            throw new UsuarioNaoEncontradoException("Contato não encontrado");
         }
 
     }
@@ -80,7 +84,7 @@ public class ContatoService {
         if (contatoOptional.isPresent()) {
             return new ContatoExibirDto(contatoOptional.get());
         } else {
-            throw new RuntimeException("Contato não encontrado");
+            throw new UsuarioNaoEncontradoException("Contato não encontrado");
         }
 
     }

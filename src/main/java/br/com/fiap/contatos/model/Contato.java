@@ -71,6 +71,7 @@ public class Contato {
         this.dataNascimento = dataNascimento;
     }
 
+    // #COMPARA OBJETO
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +85,7 @@ public class Contato {
         return Objects.hash(id, nome, senha, email, dataNascimento);
     }
 
+    // #RETORNA UMA STRING COM OS DADOS DO OBJETO
     @Override
     public String toString() {
         return "Contato{" +
