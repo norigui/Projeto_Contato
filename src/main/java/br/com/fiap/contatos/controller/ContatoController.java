@@ -39,7 +39,7 @@ public class ContatoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/contatos/{dataInicial}/{dataFinal}")
-    public List<Contato> listarPorData(
+    public List<ContatoExibirDto> listarPorData(
             @PathVariable LocalDate dataInicial,
             @PathVariable LocalDate dataFinal) {
         return contatoService.listarPorData(dataInicial, dataFinal);

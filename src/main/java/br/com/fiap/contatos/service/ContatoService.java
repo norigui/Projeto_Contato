@@ -55,8 +55,10 @@ public class ContatoService {
 
     }
 
-    public List<Contato> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
-        return contatoRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
+    public List<ContatoExibirDto> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
+        List<ContatoExibirDto> contatoExibirDto = new ArrayList<>();
+        List<Contato> contato = contatoRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
+        return contatoExibirDto = contato.stream().map(ContatoExibirDto::new).toList();
     }
 
     public ContatoExibirDto atualizarContato(ContaCadastroDto contaCadastroDto) {
