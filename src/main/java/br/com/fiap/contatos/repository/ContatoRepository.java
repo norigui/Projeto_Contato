@@ -18,4 +18,8 @@ public interface ContatoRepository extends JpaRepository<Contato, Long> {
 
     List<Contato> findByDataNascimentoBetween(LocalDate dataInical, LocalDate dataFinal);
 
+    @Query("SELECT c FROM Contato c WHERE c.dataNascimento BETWEEN :dataInicial AND :dataFinal")
+    List<Contato> listarAniversarianteDoPeriodo(@Param("dataInicial") LocalDate dataInicial,
+                                                @Param("dataFinal") LocalDate dataFinal);
+
 }

@@ -38,16 +38,17 @@ public class ContatoController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/contatos/{dataInicial}/{dataFinal}")
+    @GetMapping(value = "/contatos", params = {"dataInicial", "dataFinal"})
+    //  api/contatos?dataInicial=1900-01-01&dataFinal=2000-01-01
     public List<ContatoExibirDto> listarPorData(
-            @PathVariable LocalDate dataInicial,
-            @PathVariable LocalDate dataFinal) {
+            @RequestParam LocalDate dataInicial,
+            @RequestParam LocalDate dataFinal) {
         return contatoService.listarPorData(dataInicial, dataFinal);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/contatos/nome/{nome}")
-    public ContatoExibirDto buscarPorNome(@PathVariable String nome) {
+    @GetMapping(value = "/contatos", params = "nome")
+    public ContatoExibirDto buscarPorNome(@RequestParam String nome) {
         return contatoService.buscarContatoPeloNome(nome);
     }
 

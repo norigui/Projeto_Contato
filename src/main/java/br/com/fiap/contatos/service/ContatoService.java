@@ -41,10 +41,7 @@ public class ContatoService {
 
     public List<ContatoExibirDto> listarTodosOsContato() {
         // # CONVERTE UMA LISTA PARA UMA LISTA DTO
-        List<ContatoExibirDto> contatoExibirDtos = new ArrayList<>();
-        List<Contato> contato = contatoRepository.findAll();
-
-        return contatoExibirDtos = contato.stream().map(ContatoExibirDto::new).toList();
+        return contatoRepository.findAll().stream().map(ContatoExibirDto::new).toList();
     }
 
     public void excluir(Long id) {
@@ -60,10 +57,15 @@ public class ContatoService {
 
     public List<ContatoExibirDto> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
         // # CONVERTE UMA LISTA PARA UMA LISTA DTO
-        List<ContatoExibirDto> contatoExibirDto = new ArrayList<>();
-        List<Contato> contato = contatoRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
-        return contatoExibirDto = contato.stream().map(ContatoExibirDto::new).toList();
+        return contatoRepository.listarAniversarianteDoPeriodo(dataInicial, dataFinal).stream().map(ContatoExibirDto::new).toList();
     }
+
+//    public List<ContatoExibirDto> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
+//        // # CONVERTE UMA LISTA PARA UMA LISTA DTO
+//        List<ContatoExibirDto> contatoExibirDto = new ArrayList<>();
+//        List<Contato> contato = contatoRepository.findByDataNascimentoBetween(dataInicial, dataFinal);
+//        return contatoExibirDto = contato.stream().map(ContatoExibirDto::new).toList();
+//    }
 
     public ContatoExibirDto atualizarContato(ContaCadastroDto contaCadastroDto) {
         Contato contato = new Contato();
