@@ -41,7 +41,11 @@ public class ContatoService {
 
     public List<ContatoExibirDto> listarTodosOsContato() {
         // # CONVERTE UMA LISTA PARA UMA LISTA DTO
-        return contatoRepository.findAll().stream().map(ContatoExibirDto::new).toList();
+        return contatoRepository
+                .findAll()
+                .stream()
+                .map(ContatoExibirDto::new)
+                .toList();
     }
 
     public void excluir(Long id) {
@@ -57,7 +61,11 @@ public class ContatoService {
 
     public List<ContatoExibirDto> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
         // # CONVERTE UMA LISTA PARA UMA LISTA DTO
-        return contatoRepository.listarAniversarianteDoPeriodo(dataInicial, dataFinal).stream().map(ContatoExibirDto::new).toList();
+        return contatoRepository
+                .listarAniversarianteDoPeriodo(dataInicial, dataFinal)
+                .stream()
+                .map(ContatoExibirDto::new)
+                .toList();
     }
 
 //    public List<ContatoExibirDto> listarPorData(LocalDate dataInicial, LocalDate dataFinal) {
@@ -89,6 +97,16 @@ public class ContatoService {
             throw new UsuarioNaoEncontradoException("Contato não encontrado");
         }
 
+    }
+
+    public ContatoExibirDto buscarContatoPeloEmail(String email) {
+        Optional<Contato> contatoOptional = contatoRepository.findByEmail(email);
+
+        if(contatoOptional.isPresent()) {
+            return new ContatoExibirDto(contatoOptional.get());
+        } else {
+            throw new UsuarioNaoEncontradoException("Contato não encontrado");
+        }
     }
 
 //    public ContatoExibirDto buscarPorNome(String nome) {

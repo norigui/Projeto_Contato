@@ -52,6 +52,12 @@ public class ContatoController {
         return contatoService.buscarContatoPeloNome(nome);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/contato", params = "email")
+    public ContatoExibirDto buscarContatoPeloEmail(@RequestParam String email) {
+        return contatoService.buscarContatoPeloEmail(email);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/contatos/{id}")
     public void excluirContato(@PathVariable Long id) {
