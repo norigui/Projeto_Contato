@@ -6,6 +6,8 @@ import br.com.fiap.contatos.model.Contato;
 import br.com.fiap.contatos.service.ContatoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +29,8 @@ public class ContatoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/contatos")
-    public List<ContatoExibirDto> listarTodosContatos() {
-        return contatoService.listarTodosOsContato();
+    public Page<ContatoExibirDto> listarTodosContatos(Pageable paginacao) {
+        return contatoService.listarTodosOsContato(paginacao);
     }
 
     @ResponseStatus(HttpStatus.OK)

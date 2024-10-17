@@ -5,14 +5,13 @@ import br.com.fiap.contatos.dto.ContatoExibirDto;
 import br.com.fiap.contatos.exception.UsuarioNaoEncontradoException;
 import br.com.fiap.contatos.model.Contato;
 import br.com.fiap.contatos.repository.ContatoRepository;
-import br.com.fiap.contatos.util.modelmapper.ObjectModelMapper;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -20,7 +19,6 @@ public class ContatoService {
 
     @Autowired
     private ContatoRepository contatoRepository;
-    private ObjectModelMapper objectModelMapper;
 
     public ContatoExibirDto gravar(ContaCadastroDto contaCadastroDto) {
         Contato contato = new Contato();
@@ -39,13 +37,12 @@ public class ContatoService {
         }
     }
 
-    public List<ContatoExibirDto> listarTodosOsContato() {
+    // # CRIA UMA LISTA COM UMA PAGINACAO
+    public Page<ContatoExibirDto> listarTodosOsContato(Pageable paginacao) {
         // # CONVERTE UMA LISTA PARA UMA LISTA DTO
         return contatoRepository
-                .findAll()
-                .stream()
-                .map(ContatoExibirDto::new)
-                .toList();
+                .findAll(paginacao)
+                .map(ContatoExibirDto::new);
     }
 
     public void excluir(Long id) {
