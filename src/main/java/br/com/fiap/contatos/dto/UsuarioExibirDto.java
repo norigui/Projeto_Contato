@@ -11,7 +11,7 @@ public record UsuarioExibirDto(
         String email
 ) {
     public UsuarioExibirDto(Usuario usuario) {
-        this (
+        this(
                 usuario.getIdUsuario(),
                 usuario.getNome(),
                 usuario.getEmail()
