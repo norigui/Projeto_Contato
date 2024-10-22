@@ -30,7 +30,8 @@ public class SecurityConfig {
                         // e o local da EndPoint a ser configurado
                         // # O .permitAll() permite que todos os roles façam essa requisição.
                         .requestMatchers(HttpMethod.GET, "/api/contatos").permitAll()
-                        .requestMatchers(HttpMethod.POST, "api/contatos").permitAll()
+                        // # .hasRole() indica qual role vai poder acessar os endpoints.
+                        .requestMatchers(HttpMethod.POST, "api/contatos").hasRole("ADMIN")
                         // # E todos os outros tipo de requests
                         .anyRequest()
                         // # Precisa de autenticação para ser realizado.
