@@ -13,13 +13,17 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.*;
 
-
+// # USE O @Service PARA O SPRING BOOT RECONHECER A CLASSE SENDO DO TIPO SERVICE
 @Service
 public class ContatoService {
 
+    // # INJETANDO A INTERFACE REPOSITORY NA CLASSE.
     @Autowired
     private ContatoRepository contatoRepository;
 
+    // # Esse método recebe um objeto do tipo CadastroDto para copiar os atributo do mesmo para o objeto Contato.
+    // # Depois o Repository salva o objeto Contato para o banco de dados e converte em um Objeto ExibirDto.
+    // # O retorno final é um objeto ExibirDto.
     public ContatoExibirDto gravar(ContaCadastroDto contaCadastroDto) {
         Contato contato = new Contato();
         // # COPIA O OBJETO PARA O OBJETO DTO

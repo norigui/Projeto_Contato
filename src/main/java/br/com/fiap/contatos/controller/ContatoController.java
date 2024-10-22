@@ -21,8 +21,12 @@ public class ContatoController {
     @Autowired
     private ContatoService contatoService;
 
+    // # O @ResponseStatus() Configura qual é o código que será retornado ao ser realizado a ação da endpoint.
     @ResponseStatus(HttpStatus.CREATED)
+    // # O @PostMapping() configura o endpoint do tipo Post(Enviar). Insira dentro dos parêntesis o local do endpoint.
     @PostMapping("/contatos")
+    // # O @RequestBody vai dizer para o Spring Boot para usar os objetos desse método como o conteúdo.
+    // # O @Valid serve para usar as validações criadas na classe CadastroDto.
     public ContatoExibirDto gravar(@RequestBody @Valid ContaCadastroDto contaCadastroDto) {
         return contatoService.gravar(contaCadastroDto);
     }
