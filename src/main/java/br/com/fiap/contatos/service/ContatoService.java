@@ -28,7 +28,8 @@ public class ContatoService {
         Contato contato = new Contato();
         // # COPIA O OBJETO PARA O OBJETO DTO
         BeanUtils.copyProperties(contaCadastroDto, contato);
-        return new ContatoExibirDto(contatoRepository.save(contato));
+        Contato contatoSalvo = contatoRepository.save(contato);
+        return new ContatoExibirDto(contatoSalvo);
     }
 
     public ContatoExibirDto buscarPorId(Long id) {
