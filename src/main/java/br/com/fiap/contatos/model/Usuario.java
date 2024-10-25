@@ -67,17 +67,25 @@ public class Usuario implements UserDetails {
         this.senha = senha;
     }
 
+    public UsuarioRole getRole() {
+        return role;
+    }
+
+    public void setRole(UsuarioRole role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(idUsuario, usuario.idUsuario) && Objects.equals(nome, usuario.nome) && Objects.equals(email, usuario.email) && Objects.equals(senha, usuario.senha);
+        return Objects.equals(idUsuario, usuario.idUsuario) && Objects.equals(nome, usuario.nome) && Objects.equals(email, usuario.email) && Objects.equals(senha, usuario.senha) && role == usuario.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUsuario, nome, email, senha);
+        return Objects.hash(idUsuario, nome, email, senha, role);
     }
 
     @Override
@@ -87,6 +95,7 @@ public class Usuario implements UserDetails {
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha='" + senha + '\'' +
+                ", role=" + role +
                 '}';
     }
 

@@ -17,11 +17,11 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/usuario")
-    @ResponseStatus(HttpStatus.CREATED)
-    public UsuarioExibirDto gravar(@RequestBody @Valid UsuarioCadastroDto usuarioCadastroDto) {
-        return usuarioService.gravar(usuarioCadastroDto);
-    }
+//    @PostMapping("/usuario")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public UsuarioExibirDto gravar(@RequestBody @Valid UsuarioCadastroDto usuarioCadastroDto) {
+//        return usuarioService.gravar(usuarioCadastroDto);
+//    }
 
     @GetMapping("/usuario")
     @ResponseStatus(HttpStatus.OK)
