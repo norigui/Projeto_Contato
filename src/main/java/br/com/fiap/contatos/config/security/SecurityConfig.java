@@ -36,7 +36,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/contatos").permitAll()
                         // # .hasRole() indica qual role vai poder acessar os endpoints.
                         .requestMatchers(HttpMethod.POST, "api/contatos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "api/usuario").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
                         // # E todos os outros tipo de requests
                         .anyRequest()
                         // # Precisa de autenticação para ser realizado.

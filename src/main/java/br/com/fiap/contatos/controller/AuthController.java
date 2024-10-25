@@ -1,5 +1,6 @@
 package br.com.fiap.contatos.controller;
 
+import br.com.fiap.contatos.dto.LoginDto;
 import br.com.fiap.contatos.dto.UsuarioCadastroDto;
 import br.com.fiap.contatos.dto.UsuarioExibirDto;
 import br.com.fiap.contatos.service.UsuarioService;
@@ -27,13 +28,13 @@ public class AuthController {
 
     // # Use o @PostMapping pq o cliente vai enviar os dados pro controlador.
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid UsuarioCadastroDto usuarioCadastroDto) {
+    public ResponseEntity login(@RequestBody @Valid LoginDto loginDto) {
 
         //# Ele representa o nome do usuário e a senha.
         UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(
                 // # Inserindo o campo do usuário e o da senha para o autenticador.
-                usuarioCadastroDto.email(),
-                usuarioCadastroDto.senha()
+                loginDto.email(),
+                loginDto.senha()
         );
 
         // # Autentica um objeto que contém um nome de usuário e senha

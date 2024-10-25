@@ -1,5 +1,6 @@
 package br.com.fiap.contatos.advice;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,4 +32,13 @@ public class ApplicationExceptionHandler {
         }
         return mapaDeErro;
     }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Map<String, String> manusearIntegridadeDados() {
+        Map<String, String> mapaErro = new HashMap<>();
+        mapaErro.put("erro", "Usuário já está cadastrado.");
+        return mapaErro;
+    }
+
 }
