@@ -2,6 +2,7 @@ package br.com.fiap.contatos.controller;
 
 import br.com.fiap.contatos.dto.UsuarioCadastroDto;
 import br.com.fiap.contatos.dto.UsuarioExibirDto;
+import br.com.fiap.contatos.model.Usuario;
 import br.com.fiap.contatos.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,18 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.OK)
     public Page<UsuarioExibirDto> listarTodosUsuarios(Pageable paginacao) {
         return usuarioService.listarTodosUsuarios(paginacao);
+    }
+
+    @GetMapping(value = "/usuario", params = "nome")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioExibirDto buscarPorNome(@RequestParam String nome) {
+        return usuarioService.buscarPorNome(nome);
+    }
+
+    @GetMapping(value = "/usuario", params = "id")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioExibirDto buscarPorId(@RequestParam Long id) {
+        return usuarioService.buscarPorId(id);
     }
 
 }

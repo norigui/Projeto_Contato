@@ -59,7 +59,7 @@ public class ContatoController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/contato", params = "email")
+    @GetMapping(value = "/contatos", params = "email")
     public ContatoExibirDto buscarContatoPeloEmail(@RequestParam String email) {
         return contatoService.buscarContatoPeloEmail(email);
     }
