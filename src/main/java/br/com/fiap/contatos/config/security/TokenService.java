@@ -21,23 +21,14 @@ public class TokenService {
 
     // # Método para gerar um token.
     public String gerarToken(Usuario usuario) {
-
-        // # Usamos o try para caso aconteça um erro na hora de gerar o token.
-        try {
-            // # Prepara a palavra secreta no objeto para criptografar usando o método HMAC256.
-            Algorithm algorithm = Algorithm.HMAC256(palavraSecreta);
-            // # Cria um token usando o JWT.
-            String token = JWT
-                    // # Método para preparar a criação do token.
-                    .create()
-                    // # Método para definir quem emitiu o token.
-                    .withIssuer("contatos")
-                    // # A entidade a quem pertence o token.
-                    .withSubject(usuario.getEmail())
-                    // # Método para definir a que horário o token expira.
-                    .withExpiresAt(gerarDataExpiracao())
-                    // # Método para assinar o token com a palavra chave e a criptografia.
-                    .sign(algorithm);
+        try {  // # Usamos o try para caso aconteça um erro na hora de gerar o token.
+            Algorithm algorithm = Algorithm.HMAC256(palavraSecreta); // # Prepara a palavra secreta no objeto para criptografar usando o método HMAC256.
+            String token = JWT  // # Cria um token usando o JWT.
+                    .create()  // # Método para preparar a criação do token.
+                    .withIssuer("contatos") // # Método para definir quem emitiu o token.
+                    .withSubject(usuario.getEmail()) // # A entidade a quem pertence o token.
+                    .withExpiresAt(gerarDataExpiracao()) // # Método para definir a que horário o token expira.
+                    .sign(algorithm); // # Método para assinar o token com a palavra chave e a criptografia.
 
             return  token;
 
@@ -49,19 +40,13 @@ public class TokenService {
     // # Método para validar o token.
     public String validarToken(String token) {
         try {
-            // # Precisamos passar o mesmo método e a palavra secreta para validar o token.
-            Algorithm algorithm = Algorithm.HMAC256(palavraSecreta);
+            Algorithm algorithm = Algorithm.HMAC256(palavraSecreta); // # Precisamos passar o mesmo método e a palavra secreta para validar o token.
             return JWT
-                    // # Método que recupera o método e a palavra secreta utilizada na criptografia.
-                    .require(algorithm)
-                    // # O emissor do token.
-                    .withIssuer("contatos")
-                    // # Método que compila todas as informações.
-                    .build()
-                    // # Método para verificar o hash do token.
-                    .verify(token)
-                    // # Método para pegar o dono do token.
-                    .getSubject();
+                    .require(algorithm) // # Método que recupera o método e a palavra secreta utilizada na criptografia.
+                    .withIssuer("contatos") // # O emissor do token.
+                    .build() // # Método que compila todas as informações.
+                    .verify(token) // # Método para verificar o hash do token.
+                    .getSubject(); // # Método para pegar o dono do token.
         } catch (JWTVerificationException erro) {
             return "";
         }
