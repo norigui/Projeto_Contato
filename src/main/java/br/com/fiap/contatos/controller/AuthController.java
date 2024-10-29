@@ -3,6 +3,7 @@ package br.com.fiap.contatos.controller;
 import br.com.fiap.contatos.config.security.TokenService;
 import br.com.fiap.contatos.config.security.VerificarToken;
 import br.com.fiap.contatos.dto.LoginDto;
+import br.com.fiap.contatos.dto.TokenDto;
 import br.com.fiap.contatos.dto.UsuarioCadastroDto;
 import br.com.fiap.contatos.dto.UsuarioExibirDto;
 import br.com.fiap.contatos.model.Usuario;
@@ -49,7 +50,7 @@ public class AuthController {
         String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
 
         // # Ele compilar e se der certo retorna um ok.
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new TokenDto(token));
     }
 
     // # Retorna uma mensagem que foi criada.
