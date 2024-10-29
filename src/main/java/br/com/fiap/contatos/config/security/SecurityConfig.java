@@ -39,10 +39,11 @@ public class SecurityConfig {
                         // #  .requestMatchers Configura que tipo de método http vai ser configurado
                         // e o local da EndPoint a ser configurado
                         // # O .permitAll() permite que todos os roles façam essa requisição.
-                        .requestMatchers(HttpMethod.GET, "/api/contatos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/contatos").hasAnyRole("ADMIN", "USER")
                         // # .hasRole() indica qual role vai poder acessar os endpoints.
                         .requestMatchers(HttpMethod.POST, "api/contatos").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "api/usuario").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "api/usuario").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
                         // # E todos os outros tipo de requests
