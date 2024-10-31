@@ -1,7 +1,6 @@
 package br.com.fiap.contatos.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GeneratedColumn;
 
 import java.time.LocalDate;
 import java.util.Objects;

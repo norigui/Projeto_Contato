@@ -2,7 +2,6 @@ package br.com.fiap.contatos.controller;
 
 import br.com.fiap.contatos.dto.ContaCadastroDto;
 import br.com.fiap.contatos.dto.ContatoExibirDto;
-import br.com.fiap.contatos.model.Contato;
 import br.com.fiap.contatos.service.ContatoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

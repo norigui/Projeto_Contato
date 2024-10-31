@@ -1,10 +1,7 @@
 package br.com.fiap.contatos.controller;
 
-import br.com.fiap.contatos.dto.UsuarioCadastroDto;
 import br.com.fiap.contatos.dto.UsuarioExibirDto;
-import br.com.fiap.contatos.model.Usuario;
 import br.com.fiap.contatos.service.UsuarioService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

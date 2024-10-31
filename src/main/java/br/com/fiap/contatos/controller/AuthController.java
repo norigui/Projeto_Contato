@@ -1,7 +1,6 @@
 package br.com.fiap.contatos.controller;
 
 import br.com.fiap.contatos.config.security.TokenService;
-import br.com.fiap.contatos.config.security.VerificarToken;
 import br.com.fiap.contatos.dto.LoginDto;
 import br.com.fiap.contatos.dto.TokenDto;
 import br.com.fiap.contatos.dto.UsuarioCadastroDto;
@@ -14,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
