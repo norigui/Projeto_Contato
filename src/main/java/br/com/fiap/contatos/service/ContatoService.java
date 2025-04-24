@@ -17,7 +17,7 @@ import java.util.Optional;
 
 // # USE O @Service PARA O SPRING BOOT RECONHECER A CLASSE SENDO DO TIPO SERVICE
 @Service
-public class ContatoService {
+public class ContatoService extends BeanUtils {
 
     // # INJETANDO A INTERFACE REPOSITORY NA CLASSE.
     @Autowired
@@ -89,8 +89,19 @@ public class ContatoService {
         } else {
             throw new UsuarioNaoEncontradoException("Contato não encontrado");
         }
-
     }
+
+//    public ContatoExibirDto atualizarContato(ContaCadastroDto contaCadastroDto) {
+//        Optional<Contato> contatoOptional = contatoRepository.findById(contaCadastroDto.getId());
+//
+//        if (contatoOptional.isPresent()) {
+//            Contato contato = contatoOptional.get();
+//            BeanUtils.copyProperties(contaCadastroDto, contato, getNullPropertyNames(contaCadastroDto));
+//            return new ContatoExibirDto(contatoRepository.save(contato));
+//        } else {
+//            throw new UsuarioNaoEncontradoException("Contato não encontrado");
+//        }
+//    }
 
     public ContatoExibirDto buscarContatoPeloNome(String nome) {
         Optional<Contato> contatoOptional = contatoRepository.buscarContatopeloNome(nome);

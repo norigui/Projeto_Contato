@@ -13,7 +13,7 @@ public class AuthorizationService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // # Esse método vai carregar o nome do usuario para fazer a autenticação.
+    // # Esse métod0 vai carregar o nome do usuario para fazer a autenticação.
     // # Ele pega o nome do usuario e verifica se existe no banco de dados usando a repository para buscar os dados.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
