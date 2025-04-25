@@ -41,7 +41,7 @@ pipeline {
         stage('Push GitHub') {
             steps {
                 script {
-                    bat "echo 'Build automático em: $(date)' > build-info.txt"
+                    bat 'echo Build automático em: $(date) > build-info.txt'
 
                     bat """
                         git config user.name "Jenkins"
