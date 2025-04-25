@@ -34,7 +34,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 bat 'docker rm -f contatos-container || true'
-                bat "docker run -d --name contatos-container -p 8080:8080 $IMAGE_NAME:$TAG"
+                bat "docker run -d --name contatos-container -p 8081:8080 $IMAGE_NAME:$TAG"
             }
         }
 
